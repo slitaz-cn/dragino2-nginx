@@ -43,7 +43,7 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-vlmcsd c
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-ramfree custom/luci-app-ramfree
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-nfs custom/luci-app-nfs
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/wol custom/wol
-
+svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-aliddns custom/luci-app-aliddns
 # luci-theme-argon
 git clone -b v2.2.5 --depth 1 https://github.com/jerrykuku/luci-theme-argon.git custom/luci-theme-argon
 
