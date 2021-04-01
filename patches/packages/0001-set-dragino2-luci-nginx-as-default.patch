@@ -1,0 +1,41 @@
+From ded6ec8cd0f0ca29a6b62bd43d987d9cee99bc40 Mon Sep 17 00:00:00 2001
+From: slitaz-cn <teasiu@163.com>
+Date: Thu, 1 Apr 2021 11:31:47 +0800
+Subject: [PATCH] set dragino2 luci nginx as default
+
+Signed-off-by: slitaz-cn <teasiu@163.com>
+---
+ net/nginx/files-luci-support/luci_nginx.conf | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/net/nginx/files-luci-support/luci_nginx.conf b/net/nginx/files-luci-support/luci_nginx.conf
+index 75f0f78a6..739c64833 100644
+--- a/net/nginx/files-luci-support/luci_nginx.conf
++++ b/net/nginx/files-luci-support/luci_nginx.conf
+@@ -36,14 +36,21 @@ http {
+     root /www;
+ 
+     server {
+-        listen 80 default_server;
+-        listen [::]:80 default_server;
++        listen 8083 default_server;
++        listen [::]:8083 default_server;
+         server_name  localhost;
+ 
+         location ~* .(jpg|jpeg|png|gif|ico|css|js)$ {
+             expires 365d;
+         }
+ 
++        location /dl/slitaz/iso/rolling/ {
++		autoindex on;
++		autoindex_exact_size off;
++		autoindex_localtime on;
++		charset utf-8,gbk;
++        }
++
+         include luci_uwsgi.conf;
+ 
+     }
+-- 
+2.25.1
+

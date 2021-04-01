@@ -1,0 +1,86 @@
+From d123ccfddb20992e9ce5678e7413b55f98bd9bc3 Mon Sep 17 00:00:00 2001
+From: slitaz-cn <teasiu@163.com>
+Date: Thu, 1 Apr 2021 11:29:47 +0800
+Subject: [PATCH] set dragino2 luci nginx as default
+
+Signed-off-by: slitaz-cn <teasiu@163.com>
+---
+ .../luci-app-samba/luasrc/controller/samba.lua        |  2 +-
+ modules/luci-base/root/etc/config/luci                |  2 +-
+ .../root/usr/share/luci/menu.d/luci-base.json         | 11 ++++++++++-
+ modules/luci-base/root/www/dl                         |  1 +
+ modules/luci-base/root/www/index.html                 |  3 +--
+ 5 files changed, 14 insertions(+), 5 deletions(-)
+ create mode 120000 modules/luci-base/root/www/dl
+
+diff --git a/applications/luci-app-samba/luasrc/controller/samba.lua b/applications/luci-app-samba/luasrc/controller/samba.lua
+index 397af6a82..db600e583 100644
+--- a/applications/luci-app-samba/luasrc/controller/samba.lua
++++ b/applications/luci-app-samba/luasrc/controller/samba.lua
+@@ -11,6 +11,6 @@ function index()
+ 
+ 	local page
+ 
+-	page = entry({"admin", "services", "samba"}, cbi("samba"), _("Network Shares"))
++	page = entry({"admin", "nas", "samba"}, cbi("samba"), _("Network Shares"))
+ 	page.dependent = true
+ end
+diff --git a/modules/luci-base/root/etc/config/luci b/modules/luci-base/root/etc/config/luci
+index 46947ae4c..bbfd4c866 100644
+--- a/modules/luci-base/root/etc/config/luci
++++ b/modules/luci-base/root/etc/config/luci
+@@ -1,5 +1,5 @@
+ config core main
+-	option lang auto
++	option lang zh_cn
+ 	option mediaurlbase /luci-static/bootstrap
+ 	option resourcebase /luci-static/resources
+ 	option ubuspath /ubus/
+diff --git a/modules/luci-base/root/usr/share/luci/menu.d/luci-base.json b/modules/luci-base/root/usr/share/luci/menu.d/luci-base.json
+index 3b9e2fd99..43f671f8c 100644
+--- a/modules/luci-base/root/usr/share/luci/menu.d/luci-base.json
++++ b/modules/luci-base/root/usr/share/luci/menu.d/luci-base.json
+@@ -50,9 +50,18 @@
+ 		}
+ 	},
+ 
++	"admin/nas": {
++		"title": "NAS",
++		"order": 50,
++		"action": {
++			"type": "firstchild",
++			"recurse": true
++		}
++	},
++
+ 	"admin/network": {
+ 		"title": "Network",
+-		"order": 50,
++		"order": 60,
+ 		"action": {
+ 			"type": "firstchild",
+ 			"recurse": true
+diff --git a/modules/luci-base/root/www/dl b/modules/luci-base/root/www/dl
+new file mode 120000
+index 000000000..6ba9a736b
+--- /dev/null
++++ b/modules/luci-base/root/www/dl
+@@ -0,0 +1 @@
++/mnt/sda1/dl
+\ No newline at end of file
+diff --git a/modules/luci-base/root/www/index.html b/modules/luci-base/root/www/index.html
+index 35c0ea0d3..2040de064 100644
+--- a/modules/luci-base/root/www/index.html
++++ b/modules/luci-base/root/www/index.html
+@@ -5,7 +5,6 @@
+ <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+ <meta http-equiv="refresh" content="0; URL=cgi-bin/luci/" />
+ </head>
+-<body style="background-color: white">
+-<a style="color: black; font-family: arial, helvetica, sans-serif;" href="cgi-bin/luci/">LuCI - Lua Configuration Interface</a>
++<body>
+ </body>
+ </html>
+-- 
+2.25.1
+
