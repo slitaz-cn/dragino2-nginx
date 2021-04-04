@@ -2,7 +2,7 @@
 #
 # This is free software, license use GPLv3.
 #
-# Copyright (c) 2021, Chuck <fanck0605@qq.com>
+# Copyright (c) 2021, teasiu
 #
 
 set -eu
@@ -35,6 +35,19 @@ for feed in $feed_list; do
     }
 done
 
+# modify firmware-info
+cd "$proj_dir/openwrt"
+Compile_Date=$(date +%Y%m%d)
+AB_Firmware_Info=package/base-files/files/etc/openwrt_info
+Openwrt_Version="19.7.07-${Compile_Date}"
+Owner_Repo="https://github.com/slitaz-cn/dragino2-nginx"
+TARGET_PROFILE="dragino2"
+Firmware_Type="bin"
+echo "${Openwrt_Version}" > ${AB_Firmware_Info}
+echo "${Owner_Repo}" >> ${AB_Firmware_Info}
+echo "${TARGET_PROFILE}" >> ${AB_Firmware_Info}
+echo "${Firmware_Type}" >> ${AB_Firmware_Info}
+
 # addition packages
 cd "$proj_dir/openwrt/package"
 # luci-app-helloworld
@@ -44,6 +57,8 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-ramfree 
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-nfs custom/luci-app-nfs
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/wol custom/wol
 svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-aliddns custom/luci-app-aliddns
+svn co https://github.com/teasiu/lede-other-apps/trunk/luci-app-autoupdate custom/luci-app-autoupdate
+svn co https://github.com/teasiu/lede-other-apps/trunk/luci-app-admconf custom/luci-app-admconf
 # luci-theme-argon
 git clone -b v2.2.5 --depth 1 https://github.com/jerrykuku/luci-theme-argon.git custom/luci-theme-argon
 
@@ -74,3 +89,18 @@ make -j$(($(nproc) + 1)) || make -j1 V=s
 cd "$proj_dir"
 cp -a openwrt/bin/targets/*/* artifact
 rm -rf artifact/packages
+
+cd "$proj_dir"
+cp -a artifact/openwrt-ar71xx-generic-dragino2-squashfs-sysupgrade.bin openwrt/bin/AutoBuild-${TARGET_PROFILE}-${Openwrt_Version}.${Firmware_Type}
+rm -rf openwrt/bin/targets
+rm -rf openwrt/bin/packages
+cd "$proj_dir/openwrt/bin"
+Legacy_Firmware="AutoBuild-${TARGET_PROFILE}-${Openwrt_Version}.${Firmware_Type}"
+AutoBuild_Firmware="AutoBuild-${TARGET_PROFILE}-${Openwrt_Version}"
+if [ -f "${Legacy_Firmware}" ];then
+			_MD5=$(md5sum ${Legacy_Firmware} | cut -d ' ' -f1)
+			_SHA256=$(sha256sum ${Legacy_Firmware} | cut -d ' ' -f1)
+			touch ${AutoBuild_Firmware}.detail
+			echo -e "\nMD5:${_MD5}\nSHA256:${_SHA256}" > ${AutoBuild_Firmware}.detail
+			echo "Legacy Firmware is detected !"
+fi

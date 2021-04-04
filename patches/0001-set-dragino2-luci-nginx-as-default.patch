@@ -1,4 +1,4 @@
-From 82300cab352e13a7933377bbd8d6c184b53394c1 Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: slitaz-cn <teasiu@163.com>
 Date: Thu, 1 Apr 2021 11:26:39 +0800
 Subject: [PATCH] set dragino2 luci nginx as default
