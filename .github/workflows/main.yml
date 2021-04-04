@@ -51,6 +51,7 @@ jobs:
           sudo timedatectl set-timezone "$TZ"
           git config --global user.name "GitHub"
           git config --global user.email "noreply@github.com"
+          echo "## $(date +"%Y%m%d")-dragino2" > update_log.txt
           df -h
 
       - name: Build OpenWrt
@@ -83,6 +84,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: AutoUpdate
+          body_path: update_log.txt
           files: openwrt/bin/*
 
       - name: Delete workflow runs
