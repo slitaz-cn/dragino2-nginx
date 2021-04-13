@@ -56,7 +56,6 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-vlmcsd c
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-ramfree custom/luci-app-ramfree
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-nfs custom/luci-app-nfs
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/wol custom/wol
-svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-aliddns custom/luci-app-aliddns
 svn co https://github.com/teasiu/lede-other-apps/trunk/luci-app-autoupdate custom/luci-app-autoupdate
 svn co https://github.com/teasiu/lede-other-apps/trunk/luci-app-admconf custom/luci-app-admconf
 # luci-theme-argon

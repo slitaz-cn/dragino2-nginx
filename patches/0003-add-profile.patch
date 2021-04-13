@@ -1,0 +1,34 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: slitaz-cn <teasiu@163.com>
+Date: Tue, 13 Apr 2021 08:21:54 +0800
+Subject: [PATCH] add profile
+
+Signed-off-by: slitaz-cn <teasiu@163.com>
+---
+ package/base-files/files/etc/profile | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+diff --git a/package/base-files/files/etc/profile b/package/base-files/files/etc/profile
+index 9a3ac069a2..edf81d8184 100644
+--- a/package/base-files/files/etc/profile
++++ b/package/base-files/files/etc/profile
+@@ -57,3 +57,16 @@ service() {
+ 	}
+ 	/etc/init.d/$@
+ }
++
++Target=$([ -f /etc/openwrt_info ] && cat /etc/openwrt_info | awk 'NR==3')
++Version=$([ -f /etc/openwrt_info ] && cat /etc/openwrt_info | awk 'NR==1')
++[ -z "${Target}" ] && Target=$(jsonfilter -e '@.model.id' < /etc/board.json | tr ',' '_')
++IP_Address=$(ifconfig -a | grep inet | grep -v 127.0.0.1 | grep -v inet6 | awk '{print $2}' | tr -d "addr:" | awk 'NR==1')
++Srartup=$(awk '{a=$1/86400;b=($1%86400)/3600;c=($1%3600)/60} {printf("%d 天 %d 小时 %d 分钟\n",a,b,c)}' /proc/uptime)
++Overlay_Available="$(df -h | grep ":/overlay" | awk '{print $4}' | awk 'NR==1')"
++
++echo -e "\n\n           设备名称:		${Target}"
++echo "           固件版本:		${Version}"
++echo "           IP 地址: 		${IP_Address}"
++echo "           运行时间: 		${Srartup}"
++echo -e "           可用空间:		${Overlay_Available}\n"
+-- 
+2.20.1
+
