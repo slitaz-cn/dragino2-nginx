@@ -1,0 +1,32 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: slitaz-cn <teasiu@163.com>
+Date: Fri, 23 Apr 2021 16:21:40 +0800
+Subject: [PATCH] add freefq.sh
+
+Signed-off-by: slitaz-cn <teasiu@163.com>
+---
+ package/base-files/files/etc/freefq.sh | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+ create mode 100644 package/base-files/files/etc/freefq.sh
+
+diff --git a/package/base-files/files/etc/freefq.sh b/package/base-files/files/etc/freefq.sh
+new file mode 100644
+index 0000000000..245b606513
+--- /dev/null
++++ b/package/base-files/files/etc/freefq.sh
+@@ -0,0 +1,12 @@
++#!/bin/sh
++if [ -d "/mnt/sda1/web/ssr-dl" ];then
++cd /mnt/sda1/web/ssr-dl
++rm ssr
++rm v2
++wget -c https://cdn.jsdelivr.net/gh/freefq/free@master/ssr
++wget -c https://cdn.jsdelivr.net/gh/freefq/free@master/v2
++wget -c https://cdn.jsdelivr.net/gh/ssrsub/ssr@master/ss-sub
++wget -c https://cdn.jsdelivr.net/gh/ssrsub/ssr@master/v2ray
++wget -c https://cdn.jsdelivr.net/gh/ssrsub/ssr@master/ssrsub
++wget -c https://cdn.jsdelivr.net/gh/gfwlist/gfwlist@master/gfwlist.txt
++fi
+-- 
+2.20.1
+

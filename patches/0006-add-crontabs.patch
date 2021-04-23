@@ -1,0 +1,22 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: slitaz-cn <teasiu@163.com>
+Date: Fri, 23 Apr 2021 16:57:05 +0800
+Subject: [PATCH 1/2] add crontabs
+
+Signed-off-by: slitaz-cn <teasiu@163.com>
+---
+ package/base-files/files/etc/crontabs/root | 2 ++
+ 1 file changed, 2 insertions(+)
+ create mode 100644 package/base-files/files/etc/crontabs/root
+
+diff --git a/package/base-files/files/etc/crontabs/root b/package/base-files/files/etc/crontabs/root
+new file mode 100644
+index 0000000000..2de208861e
+--- /dev/null
++++ b/package/base-files/files/etc/crontabs/root
+@@ -0,0 +1,2 @@
++0 1 * * 1 bash /etc/slitaz-iso-dl.sh
++0 */8 * * * bash /etc/freefq.sh
+-- 
+2.20.1
+

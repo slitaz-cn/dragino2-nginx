@@ -1,0 +1,29 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: slitaz-cn <teasiu@163.com>
+Date: Fri, 23 Apr 2021 16:57:21 +0800
+Subject: [PATCH 2/2] add dl-iso
+
+Signed-off-by: slitaz-cn <teasiu@163.com>
+---
+ package/base-files/files/etc/slitaz-iso-dl.sh | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+ create mode 100644 package/base-files/files/etc/slitaz-iso-dl.sh
+
+diff --git a/package/base-files/files/etc/slitaz-iso-dl.sh b/package/base-files/files/etc/slitaz-iso-dl.sh
+new file mode 100644
+index 0000000000..7b2ad322de
+--- /dev/null
++++ b/package/base-files/files/etc/slitaz-iso-dl.sh
+@@ -0,0 +1,9 @@
++#!/bin/sh
++if [ -d "/mnt/sda1/dl/slitaz/iso/rolling" ];then
++cd /mnt/sda1/dl/slitaz/iso/rolling
++[ -e slitaz-rolling-core64.iso ] && rm slitaz-rolling-core64.iso
++wget -c https://dl.aurorafoss.org/slitaz/iso/rolling/slitaz-rolling-core64.iso
++[ -e slitaz-rolling-core.iso ] && rm slitaz-rolling-core.iso
++wget -c https://dl.aurorafoss.org/slitaz/iso/rolling/slitaz-rolling-core.iso
++exit
++fi
+-- 
+2.20.1
+

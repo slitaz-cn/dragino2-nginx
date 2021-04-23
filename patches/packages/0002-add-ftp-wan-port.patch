@@ -1,0 +1,24 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: slitaz-cn <teasiu@163.com>
+Date: Fri, 23 Apr 2021 16:45:06 +0800
+Subject: [PATCH] add ftp-wan port
+
+Signed-off-by: slitaz-cn <teasiu@163.com>
+---
+ net/vsftpd/files/vsftpd.conf | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/net/vsftpd/files/vsftpd.conf b/net/vsftpd/files/vsftpd.conf
+index e06ac3543..8689ecc99 100644
+--- a/net/vsftpd/files/vsftpd.conf
++++ b/net/vsftpd/files/vsftpd.conf
+@@ -27,4 +27,5 @@ session_support=NO
+ #ssl_sslv3=NO
+ #rsa_cert_file=/etc/vsftpd/vsftpd_cert.pem
+ #rsa_private_key_file=/etc/vsftpd/vsftpd_privkey.pem
+-
++pasv_min_port=10024
++pasv_max_port=10032
+-- 
+2.20.1
+
