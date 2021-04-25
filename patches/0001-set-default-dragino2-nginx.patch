@@ -286,7 +286,7 @@ index 8874e9882c..4f4af8ee5d 100644
 +	option name 'ftp-wan'
 +	list proto 'tcp'
 +	option src 'wan'
-+	option dest_port '10024-10032'
++	option dest_port '10090-10100'
 +	option target 'ACCEPT'
 +
 +config rule                                                                                 

@@ -17,8 +17,8 @@ index e06ac3543..8689ecc99 100644
  #rsa_cert_file=/etc/vsftpd/vsftpd_cert.pem
  #rsa_private_key_file=/etc/vsftpd/vsftpd_privkey.pem
 -
-+pasv_min_port=10024
-+pasv_max_port=10032
++pasv_min_port=10090
++pasv_max_port=10100
 -- 
 2.20.1
 
