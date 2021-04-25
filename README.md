@@ -6,6 +6,9 @@
 - username: root
 - password: password
 
+外网ssh 端口8022
+外网ftp和samba默认打开端口
+
 ## tips: create patch files
 ```
 git add .
