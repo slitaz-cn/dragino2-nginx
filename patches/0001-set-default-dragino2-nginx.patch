@@ -1,7 +1,7 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: slitaz-cn <teasiu@163.com>
-Date: Fri, 23 Apr 2021 16:14:58 +0800
-Subject: [PATCH] set default dragino2-nginx
+Date: Wed, 28 Apr 2021 15:04:34 +0800
+Subject: [PATCH] set default dragino2 nginx
 
 Signed-off-by: slitaz-cn <teasiu@163.com>
 ---
@@ -17,14 +17,14 @@ Signed-off-by: slitaz-cn <teasiu@163.com>
  package/base-files/files/etc/shadow           |  2 +-
  package/base-files/image-config.in            |  6 +-
  .../linux/files/sysctl-nf-conntrack.conf      |  2 +-
- .../config/firewall/files/firewall.config     | 65 ++++++++++++++
+ .../config/firewall/files/firewall.config     | 72 ++++++++++++++++
  .../services/dropbear/files/dropbear.config   |  1 +
  .../services/samba36/files/samba.config       |  4 +-
  .../services/samba36/files/smb.conf.template  |  4 +-
  package/system/fstools/Makefile               |  1 +
  package/system/fstools/files/10-auto-mount    | 85 +++++++++++++++++++
  scripts/download.pl                           |  1 +
- 19 files changed, 203 insertions(+), 24 deletions(-)
+ 19 files changed, 210 insertions(+), 24 deletions(-)
  create mode 100755 package/base-files/files/etc/nginx/conf.d/vhost.conf
  create mode 100644 package/system/fstools/files/10-auto-mount
 
@@ -238,10 +238,10 @@ index 37baf5fd6f..558154d73a 100644
  net.netfilter.nf_conntrack_udp_timeout=60
  net.netfilter.nf_conntrack_udp_timeout_stream=180
 diff --git a/package/network/config/firewall/files/firewall.config b/package/network/config/firewall/files/firewall.config
-index 8874e9882c..4f4af8ee5d 100644
+index 8874e9882c..4b56393ba9 100644
 --- a/package/network/config/firewall/files/firewall.config
 +++ b/package/network/config/firewall/files/firewall.config
-@@ -129,6 +129,71 @@ config rule
+@@ -129,6 +129,78 @@ config rule
  	option proto		udp
  	option target		ACCEPT
  
@@ -287,6 +287,13 @@ index 8874e9882c..4f4af8ee5d 100644
 +	list proto 'tcp'
 +	option src 'wan'
 +	option dest_port '10090-10100'
++	option target 'ACCEPT'
++
++config rule
++	option name 'ttyd-wan'
++	list proto 'tcp'
++	option src 'wan'
++	option dest_port '7682'
 +	option target 'ACCEPT'
 +
 +config rule                                                                                 

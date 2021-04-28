@@ -1,0 +1,26 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: slitaz-cn <teasiu@163.com>
+Date: Wed, 28 Apr 2021 14:51:19 +0800
+Subject: [PATCH] add ttyd wan port 7682
+
+Signed-off-by: slitaz-cn <teasiu@163.com>
+---
+ utils/ttyd/files/ttyd.config | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/utils/ttyd/files/ttyd.config b/utils/ttyd/files/ttyd.config
+index 8dbde7034..0bc7a3e8d 100644
+--- a/utils/ttyd/files/ttyd.config
++++ b/utils/ttyd/files/ttyd.config
+@@ -2,4 +2,7 @@
+ config ttyd
+ 	option interface '@lan'
+ 	option command '/bin/login'
+-
++config ttyd
++	option port '7682'
++	option interface '@wan'
++	option command '/bin/login'
+-- 
+2.20.1
+
