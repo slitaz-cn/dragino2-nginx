@@ -1,7 +1,7 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: slitaz-cn <teasiu@163.com>
 Date: Wed, 28 Apr 2021 14:51:19 +0800
-Subject: [PATCH] add ttyd wan port 7682
+Subject: [PATCH] add ttyd wan port 7681
 
 Signed-off-by: slitaz-cn <teasiu@163.com>
 ---
@@ -18,7 +18,7 @@ index 8dbde7034..0bc7a3e8d 100644
  	option command '/bin/login'
 -
 +config ttyd
-+	option port '7682'
++	option port '7681'
 +	option interface '@wan'
 +	option command '/bin/login'
 -- 

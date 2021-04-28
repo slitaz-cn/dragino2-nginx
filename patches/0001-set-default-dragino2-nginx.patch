@@ -293,7 +293,7 @@ index 8874e9882c..4b56393ba9 100644
 +	option name 'ttyd-wan'
 +	list proto 'tcp'
 +	option src 'wan'
-+	option dest_port '7682'
++	option dest_port '7681'
 +	option target 'ACCEPT'
 +
 +config rule                                                                                 
