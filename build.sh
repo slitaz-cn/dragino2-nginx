@@ -12,7 +12,7 @@ proj_dir=$(pwd)
 # clone openwrt
 cd "$proj_dir"
 rm -rf openwrt
-git clone -b v19.07.7 https://github.com/openwrt/openwrt.git openwrt
+git clone -b v19.07.7 --depth 1 https://github.com/openwrt/openwrt.git openwrt
 
 # patch openwrt
 cd "$proj_dir/openwrt"
@@ -79,6 +79,9 @@ cd "$proj_dir/openwrt"
 cat "$proj_dir/config.seed" >.config
 make defconfig
 
+echo "10秒后开始编译"
+sleep 10
+
 # build openwrt
 cd "$proj_dir/openwrt"
 make download -j8
@@ -91,6 +94,9 @@ rm -rf artifact/packages
 
 cd "$proj_dir"
 cp -a artifact/openwrt-ar71xx-generic-dragino2-squashfs-sysupgrade.bin openwrt/bin/AutoBuild-${TARGET_PROFILE}-${Openwrt_Version}.${Firmware_Type}
+mv artifact/openwrt-imagebuilder-19.07.7-ar71xx-generic.Linux-x86_64.tar.xz openwrt/bin/openwrt-imagebuilder-19.07.7-ar71xx-generic.Linux-x86_64.tar.xz
+mv artifact/openwrt-sdk-19.07.7-ar71xx-generic_gcc-7.5.0_musl.Linux-x86_64.tar.xz openwrt/bin/openwrt-sdk-19.07.7-ar71xx-generic_gcc-7.5.0_musl.Linux-x86_64.tar.xz
+mv artifact/config.buildinfo openwrt/bin/config.buildinfo
 rm -rf openwrt/bin/targets
 rm -rf openwrt/bin/packages
 cd "$proj_dir/openwrt/bin"
