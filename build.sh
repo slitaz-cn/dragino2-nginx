@@ -94,8 +94,8 @@ rm -rf artifact/packages
 
 cd "$proj_dir"
 cp -a artifact/openwrt-ar71xx-generic-dragino2-squashfs-sysupgrade.bin openwrt/bin/AutoBuild-${TARGET_PROFILE}-${Openwrt_Version}.${Firmware_Type}
-mv artifact/openwrt-imagebuilder-19.07.7-ar71xx-generic.Linux-x86_64.tar.xz openwrt/bin/openwrt-imagebuilder-19.07.7-ar71xx-generic.Linux-x86_64.tar.xz
-mv artifact/openwrt-sdk-19.07.7-ar71xx-generic_gcc-7.5.0_musl.Linux-x86_64.tar.xz openwrt/bin/openwrt-sdk-19.07.7-ar71xx-generic_gcc-7.5.0_musl.Linux-x86_64.tar.xz
+mv artifact/openwrt-imagebuilder-ar71xx-generic.Linux-x86_64.tar.xz openwrt/bin/openwrt-imagebuilder-ar71xx-generic.Linux-x86_64.tar.xz
+mv artifact/openwrt-sdk-ar71xx-generic_gcc-7.5.0_musl.Linux-x86_64.tar.xz openwrt/bin/openwrt-sdk-ar71xx-generic_gcc-7.5.0_musl.Linux-x86_64.tar.xz
 mv artifact/config.buildinfo openwrt/bin/config.buildinfo
 rm -rf openwrt/bin/targets
 rm -rf openwrt/bin/packages
